@@ -1,0 +1,182 @@
+{% extends "layout.html"%}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Subscribe{% endblock %}
+
+{% block content %}
+    {% if form_submitted == True %}
+        <h2>Success. You are now a Air Nomad ✈️.</h2>
+    {% else %}
+        <h2 class="display-5">Become an AirNomad.</h2>
+        <p class="lead my-4">Get the best flight deals directly into your inbox. Fully automated. One email per week, packed with the best deals.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-light mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Info
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" style="text-align: left">
+                <div style="padding-bottom: 20px">
+                <h5>FAQ</h5>
+                    <div>
+                        <details>
+                          <summary><u>What are the benefits of joining the AirNomad Society?</u></summary>
+                            <p>Joining grants you access to the <b>best</b> flight deals, travel tips, and more. It's a community where members can stay updated on travel opportunities and savings.</p>
+                        </details>
+                        <details>
+                          <summary><u>What is the pricing for AirNomad Society?</u></summary>
+                          <p>AirNomad Society is <b>completely free</b> to join and use. There are no subscription fees or hidden charges!</p>
+                        </details>
+                       <details>
+                          <summary><u>Will I get flight deals for destinations not in my favorite countries?</u></summary>
+                          <p>Yes, you'll still receive flight deals for destinations outside your favorite countries.</p>
+                        </details>
+                        <details>
+                          <summary><u>How far ahead do the flight deals cover? Are they for specific dates?</u></summary>
+                            <p>Flight deals typically cover the next <b>180 days</b> into the future.</p>
+                        </details>
+                        <details>
+                            <summary><u>What's Next After Joining ?</u></summary>
+                          <p>As a member, enjoy effortless access to top flight deals delivered straight to your inbox. Save money on flights tailored to your travel desires. When you spot a deal you like, click the link to customize your flight. Act fast, as each deal is curated for specific countries and timeframes you selected.</p>
+                        </details>
+                        <details>
+                          <summary><u>How often will I receive flight deal emails?</u></summary>
+                            <p>Emails are sent <b>once a week</b> containing deals for your favorite destinations.</p>
+                        </details>
+                        <details>
+                          <summary><u>How can I give feedback to improve the flight deal service?</u></summary>
+                          <p>Provide feedback <a href="https://forms.gle/UBVPuGtojkDaagCF6" class="links">here</a>.</p>
+                        </details>
+                    </div>
+                </div>
+                <div>
+                    <h5>How it works</h5>
+                     <ol>
+                        <li>Choose a date in the past.</li>
+                        <li>Set the playlist title and description.</li>
+                        <li>Click "Generate".</li>
+                        <li>Wait for up to 1 minute.</li>
+                        <li>Click on the link to open the playlist in spotify.</li>
+                        <li>Save the playlist to your library.</li>
+                    </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{ render_form(form) }}
+        <br><br>
+        <!-- caroussel -->
+        <div class="container marketing">
+    <!-- Three columns of text below the carousel -->
+            <!--<div class="row py-4">
+              <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"></rect></svg>
+                <h2 class="fw-normal">Heading</h2>
+                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+              </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;
+              <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"></rect></svg>
+                <h2 class="fw-normal">Heading</h2>
+                <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+              </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;
+              <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"></rect></svg>
+                <h2 class="fw-normal">Heading</h2>
+                <p>And lastly this, the third column of representative placeholder content.</p>
+                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+              </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;
+            </div>&lt;!&ndash; /.row &ndash;&gt;-->
+            <!-- START THE FEATURETTES -->
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette py-5">
+                  <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">Plan Trips Whenever <span style="color: #A5C9E1">You </span>Desire.</h2>
+                    <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                  </div>
+                  <div class="col-md-5">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+                  </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette py-5">
+              <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1">Discover <span style="color: #A5C9E1">Unusual </span>Destinations.</h2>
+                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+              </div>
+              <div class="col-md-5 order-md-1">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+              </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette py-5">
+              <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">No More <span style="color: #A5C9E1">Lengthy </span>Flight Searches.</h2>
+                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+              </div>
+              <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+              </div>
+            </div>
+
+            <!-- /END THE FEATURETTES -->
+
+  </div>
+        <!-- Pricing -->
+<!--
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mx-5">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Free</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$0<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>10 users included</li>
+                  <li>2 GB of storage</li>
+                  <li>Email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Try for free</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Enterprise</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$3.99<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>30 users included</li>
+                  <li>15 GB of storage</li>
+                  <li>Phone and email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">Sign Up</button>
+              </div>
+            </div>
+          </div>
+    </div>
+-->
+    {% endif %}
+{% endblock %}
+
+

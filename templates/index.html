@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+
+{% from "bootstrap5/form.html" import render_form %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="my-5 py-5">
+        <h1>Timon's Project Hub</h1>
+        <p class="lead" style="margin: 20px">Explore all my projects. Feel free to try them out!</p>
+        <p class="lead">
+          <a href="{{ url_for('browse_projects') }}" class="btn btn-lg btn-light fw-bold border-white bg-white">Explore</a>
+        </p>
+    </div>
+    <div class="my-5">
+        {% if form_submitted == True %}
+            <h2>Success.</h2>
+        {% else %}
+            {{ render_form(form, button_map={"submit": "danger"}) }}
+        {% endif %}
+    </div>
+{% endblock %}

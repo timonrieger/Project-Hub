@@ -1,0 +1,83 @@
+{% extends "layout.html"%}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Subscribe{% endblock %}
+
+{% block content %}
+        <div id="content">
+            <h1 class="display-5">Get your PERSONALIZED Playlist</h1>
+            <p class="lead py-4">Create a Spotify playlist based on the Top 100 Charts from a historic day. Listen right away!</p>
+            <button type="button" class="btn btn-light mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Info
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="text-align: left">
+                    <div style="padding-bottom: 20px">
+                    <h5>FAQ</h5>
+                        <div>
+                            <details>
+                              <summary><u>Not on Spotify?</u></summary>
+                                <p>To listen to the playlist in another music app, you will have to sign up on <a href="https://www.spotify.com", class="links">Spotify</a> and transfer the playlist to your platform via <a href="https://www.tunemymusic.com", class="links">Tune My Music</a>.</p>
+                                <p>The setup will take around 5 minutes:</p>
+                                 <ol>
+                                    <li>Register for a <a href="https://www.spotify.com/us/signup" class="links">free Spotify account</a>.</li>
+                                    <li>Follow the steps in "How it works".</li>
+                                    <li>Visit <a href="https://www.tunemymusic.com/de/transfer" class="links">Tune My Music</a>.</li>
+                                    <li>Select Spotify as the source and follow the steps.</li>
+                                    <li>Find the playlist in your music app. Note that some songs may not be supported.</li>
+                                </ol>
+                            </details>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>How it works</h5>
+                         <ol>
+                            <li>Choose a date in the past.</li>
+                            <li>Set the playlist title and description.</li>
+                            <li>Click "Generate".</li>
+                            <li>Wait for up to 1 minute.</li>
+                            <li>Click on the link to open the playlist in spotify.</li>
+                            <li>Save the playlist to your library.</li>
+                        </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% if form_submitted == True %}
+                <button type="button" class="btn btn-danger mb-5" data-bs-toggle="modal" data-bs-target="#show_playlist_link">
+                  Listen Now!
+                </button>
+                <div class="modal fade" id="show_playlist_link" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div>
+                        <h2>Enjoy Listening! <a href="{{ link }}" target="_blank">{{ title }}</a></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+            {% if get_flashed_messages() %}
+                {% for message in get_flashed_messages() %}
+                    <h5 class="flash mb-4" style="color: #d9534f">{{ message }}</h5>
+                {% endfor %}
+            {% else %}
+                <div class="text-center" id="loading" style="display: none">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+            {% endif %}
+            {{ render_form(form, button_map={"submit": "danger"}) }}
+        </div>
+{% endblock %}
