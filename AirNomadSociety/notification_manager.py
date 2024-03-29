@@ -1,19 +1,14 @@
-import json
-import smtplib
-import os
-import requests
+import json, smtplib, requests
+from secrets import ANS_EMAIL, ANS_MAIL_PASSWORD
 
 # import email.mime.text
 
-BITLY_ACCESS_TOKEN = os.environ.get("BITLY_ACCESS_TOKEN")
+BITLY_ACCESS_TOKEN = "#"
 BITLY_ENDPOINT = "https://api-ssl.bitly.com/v4/shorten"
 
-ALERTZY_ACCOUNT_KEY = os.environ.get("ALERTZY_ACCOUNT_KEY")
+ALERTZY_ACCOUNT_KEY = "#"
 
-MY_EMAIL = "airnomadsociety@gmail.com"
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-
-TINYURL_ENDPOINT = os.environ.get("TINYURL_ENDPOINT")
+TINYURL_ENDPOINT = "#"
 
 class NotificationManager:
     #This class is responsible for sending notifications with the deal flight details.
@@ -47,9 +42,9 @@ class NotificationManager:
     def send_emails(self, to_adress, message):
         try:
             with smtplib.SMTP_SSL(host="smtp.gmail.com") as connection:
-                connection.login(user=MY_EMAIL, password=EMAIL_PASSWORD)
+                connection.login(user=ANS_EMAIL, password=ANS_MAIL_PASSWORD)
                 connection.sendmail(
-                    from_addr=MY_EMAIL,
+                    from_addr=ANS_EMAIL,
                     to_addrs=to_adress,
                     msg=f"Subject: New Low Price Flights!\n\n{message}".encode("UTF-8"))
         except smtplib.SMTPRecipientsRefused:

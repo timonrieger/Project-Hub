@@ -1,12 +1,8 @@
 from datetime import datetime
-
-import requests
-import time
-import os
-
+from secrets import TEQUILA_API_KEY
+import requests, time
 from flight_data import FlightData
 
-TEQUILA_API_KEY = os.environ.get("TEQUILA_API_KEY")
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com"
 
 
