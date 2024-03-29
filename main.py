@@ -53,7 +53,7 @@ def home():
 
 @app.route("/projects")
 def browse_projects():
-    print(data["projects"])
+    #print(data["projects"])
     return render_template("projects.html", all_projects=data["projects"])
 
 @app.route("/contact", methods=["POST", "GET"])
