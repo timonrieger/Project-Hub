@@ -1,5 +1,5 @@
-secrets.py
-.cache
+secret_keys.py
+FlashbackPlaylists/.cache
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

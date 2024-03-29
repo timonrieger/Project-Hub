@@ -1,5 +1,5 @@
 import json, smtplib, requests
-from secrets import ANS_EMAIL, ANS_MAIL_PASSWORD
+from secret_keys import ANS_EMAIL, ANS_MAIL_PASSWORD
 
 # import email.mime.text
 

@@ -8,6 +8,7 @@ from forms import AirNomadSocietySubscribe, NewsletterForm, ContactForm, Flashba
 import requests
 from flask_bootstrap import Bootstrap5
 from FlashbackPlaylists.spotify import PlaylistGenerator
+from secret_keys import FLASK_SECRET_KEY
 
 # import sheety airports database (large and mid airports)
 
@@ -15,7 +16,7 @@ from FlashbackPlaylists.spotify import PlaylistGenerator
 data = requests.get(url="https://api.npoint.io/498c13e5c27e87434a9f").json()
 
 app = Flask(__name__)
-app.secret_key = "tfwbwU#2005_flask"
+app.secret_key = FLASK_SECRET_KEY
 bootstrap = Bootstrap5(app)
 
 class Base(DeclarativeBase):

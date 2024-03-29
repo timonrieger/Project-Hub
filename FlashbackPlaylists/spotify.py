@@ -3,14 +3,15 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import os
+from secret_keys import SPOTIFY_SECRET, SPOTIFY_CLIENT_ID
 
 
 class PlaylistGenerator:
 
     def generate_playlist(date, title, description):
 
-        CLIENT_ID = os.environ.get("SPOTIFY_CLIENT_ID")
-        SECRET = os.environ.get("SPOTIFY_SECRET")
+        CLIENT_ID = SPOTIFY_CLIENT_ID
+        SECRET = SPOTIFY_SECRET
         REDIRECT_URL = "http://example.com"
         OAUTH_AUTHORIZE_URL = 'https://accounts.spotify.com/authorize'
         OAUTH_TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -23,7 +24,7 @@ class PlaylistGenerator:
                 client_id=CLIENT_ID,
                 client_secret=SECRET,
                 show_dialog=True,
-                cache_path=".cache",
+                cache_path="FlashbackPlaylists/.cache",
                 username="timonrieger",
             )
         )

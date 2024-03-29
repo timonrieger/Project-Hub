@@ -1,5 +1,5 @@
 import requests, os
-from secrets import SHEETY_BEARER
+from secret_keys import SHEETY_BEARER
 
 SHEETY_ALL_ENDPOINT = "https://api.sheety.co/e2e4da57cedbf59fa0d734324f84fc00/flightDeals"
 
