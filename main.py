@@ -48,7 +48,7 @@ with app.app_context():
 def home():
     form = NewsletterForm()
     if form.validate_on_submit():
-        already_subscriber = db.get_or_404(NewsletterSubscribers, form.email.data)
+        already_subscriber = db.session.execute(db.Select(NewsletterSubscribers).where(NewsletterSubscribers.email == form.email.data)).scalar()
         if already_subscriber:
             flash("You have subscribed already.")
         if not already_subscriber:
@@ -56,7 +56,6 @@ def home():
             db.session.add(newsletter_subscriber)
             db.session.commit()
             flash("Successfully subscribed.")
-        return render_template("index.html", form=form)
     return render_template("index.html", form=form)
 
 @app.route("/projects")
@@ -76,7 +75,7 @@ def contact():
 def air_nomad_society():
     form = AirNomadSocietySubscribe()
     if form.validate_on_submit():
-        already_member = db.session.execute(db.Select(AirNomads).where(AirNomads.email == form.email.data))
+        already_member = db.session.execute(db.Select(AirNomads).where(AirNomads.email == form.email.data)).scalar()
         if already_member:
             flash("You are already a member. Your preferences were changed successfully.")
         if not already_member:
