@@ -5,131 +5,127 @@
 {% block title %}Subscribe{% endblock %}
 
 {% block content %}
-    {% if form_submitted == True %}
-        <h2>Success. You are now an Air Nomad ✈️</h2>
-        <p>Lean back and wait for those yummy deals!</p>
-    {% else %}
-        <h2 class="display-5">Become an AirNomad</h2>
-        <p class="lead my-4">Get the best flight deals directly into your inbox. Fully automated. One email per week, packed with the best deals.</p>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-light mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Info
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" style="text-align: left">
-                <div style="padding-bottom: 20px">
-                <h5>FAQ</h5>
-                    <div>
-                        <details>
-                          <summary><u>What are the benefits of joining the AirNomad Society?</u></summary>
-                            <p>Joining grants you access to the <b>best</b> flight deals, travel tips, and more. It's a community where members can stay updated on travel opportunities and savings.</p>
-                        </details>
-                        <details>
-                          <summary><u>What is the pricing for AirNomad Society?</u></summary>
-                          <p>AirNomad Society is <b>completely free</b> to join and use. There are no subscription fees or hidden charges!</p>
-                        </details>
-                       <details>
-                          <summary><u>Will I get flight deals for destinations not in my favorite countries?</u></summary>
-                          <p>Yes, you'll still receive flight deals for destinations outside your favorite countries.</p>
-                        </details>
-                        <details>
-                          <summary><u>How far ahead do the flight deals cover? Are they for specific dates?</u></summary>
-                            <p>Flight deals typically cover the next <b>180 days</b> into the future.</p>
-                        </details>
-                        <details>
-                            <summary><u>What's Next After Joining ?</u></summary>
-                          <p>As a member, enjoy effortless access to top flight deals delivered straight to your inbox. Save money on flights tailored to your travel desires. When you spot a deal you like, click the link to customize your flight. Act fast, as each deal is curated for specific countries and timeframes you selected.</p>
-                        </details>
-                        <details>
-                          <summary><u>How often will I receive flight deal emails?</u></summary>
-                            <p>Emails are sent <b>once a week</b> containing deals for your favorite destinations.</p>
-                        </details>
-                        <details>
-                          <summary><u>How can I give feedback to improve the flight deal service?</u></summary>
-                          <p>Provide feedback <a href="https://forms.gle/UBVPuGtojkDaagCF6" class="links">here</a>.</p>
-                        </details>
-                    </div>
-                </div>
+    <h2 class="display-5">Become an AirNomad</h2>
+    <p class="lead my-4">Get the best flight deals directly into your inbox. Fully automated. One email per week, packed with the best deals.</p>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-light mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Info
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="text-align: left">
+            <div style="padding-bottom: 20px">
+            <h5>FAQ</h5>
                 <div>
-                    <h5>How it works</h5>
-                    <ol>
-                      <li>Set your username for email individualisation.</li>
-                      <li>Enter your email address to subscribe.</li>
-                      <li>Choose your departure city or the nearest major city.</li>
-                      <li>Select your preferred currency.</li>
-                      <li>Specify the minimum and maximum number of nights per location.</li>
-                      <li>Choose your favorite countries to receive weekly deals.</li>
-                      <li>Click "Join Air Nomad Society" to complete the process.</li>
-                    </ol>
+                    <details>
+                      <summary><u>What are the benefits of joining the AirNomad Society?</u></summary>
+                        <p>Joining grants you access to the <b>best</b> flight deals, travel tips, and more. It's a community where members can stay updated on travel opportunities and savings.</p>
+                    </details>
+                    <details>
+                      <summary><u>What is the pricing for AirNomad Society?</u></summary>
+                      <p>AirNomad Society is <b>completely free</b> to join and use. There are no subscription fees or hidden charges!</p>
+                    </details>
+                   <details>
+                      <summary><u>Will I get flight deals for destinations not in my favorite countries?</u></summary>
+                      <p>Yes, you'll still receive flight deals for destinations outside your favorite countries.</p>
+                    </details>
+                    <details>
+                      <summary><u>How far ahead do the flight deals cover? Are they for specific dates?</u></summary>
+                        <p>Flight deals typically cover the next <b>180 days</b> into the future.</p>
+                    </details>
+                    <details>
+                        <summary><u>What's Next After Joining ?</u></summary>
+                      <p>As a member, enjoy effortless access to top flight deals delivered straight to your inbox. Save money on flights tailored to your travel desires. When you spot a deal you like, click the link to customize your flight. Act fast, as each deal is curated for specific countries and timeframes you selected.</p>
+                    </details>
+                    <details>
+                      <summary><u>How often will I receive flight deal emails?</u></summary>
+                        <p>Emails are sent <b>once a week</b> containing deals for your favorite destinations.</p>
+                    </details>
+                    <details>
+                      <summary><u>How can I give feedback to improve the flight deal service?</u></summary>
+                      <p>Provide feedback <a href="https://forms.gle/UBVPuGtojkDaagCF6" class="links">here</a>.</p>
+                    </details>
                 </div>
-              </div>
+            </div>
+            <div>
+                <h5>How it works</h5>
+                <ol>
+                  <li>Set your username for email individualisation.</li>
+                  <li>Enter your email address to subscribe.</li>
+                  <li>Choose your departure city or the nearest major city.</li>
+                  <li>Select your preferred currency.</li>
+                  <li>Specify the minimum and maximum number of nights per location.</li>
+                  <li>Choose your favorite countries to receive weekly deals.</li>
+                  <li>Click "Join Air Nomad Society" to complete the process.</li>
+                </ol>
             </div>
           </div>
         </div>
-        {% if get_flashed_messages() %}
-                {% for message in get_flashed_messages() %}
-                    <h5 class="flash mb-4" style="color: #0275d8">{{ message }}</h5>
-                {% endfor %}
-        {% endif %}
-        {{ render_form(form) }}
-        <br><br>
-        <!-- caroussel -->
-        <div class="container marketing">
-            <!-- START THE FEATURETTES -->
+      </div>
+    </div>
+    {% if get_flashed_messages() %}
+            {% for message in get_flashed_messages() %}
+                <h5 class="flash mb-4" style="color: #0275d8">{{ message }}</h5>
+            {% endfor %}
+    {% endif %}
+    {{ render_form(form) }}
+    <br><br>
+    <!-- caroussel -->
+    <div class="container marketing">
+        <!-- START THE FEATURETTES -->
 
-            <hr class="featurette-divider">
+        <hr class="featurette-divider">
 
-            <div class="row featurette py-5">
-                <div class="col-md-7" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">Plan Trips Whenever <span style="color: #A5C9E1">You </span>Desire.</h2>
-                    <p class="lead">Seamlessly organize your travel itineraries with our intuitive flight database platform. Whether it's a spontaneous getaway or a planned journey, our platform empowers you to plan trips at your convenience.</p>
-                  </div>
-                  <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="border-radius: 20px;" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-                        <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1567927663055-efed28734f1f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVpc2VufGVufDB8fDB8fHww"></image>
-                    </svg>
-                  </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette py-5">
-              <div class="col-md-7 order-md-2" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">Discover <span style="color: #A5C9E1">Unusual </span>Destinations.</h2>
-                <p class="lead">Broaden your travel horizons effortlessly with our platform. Discover unconventional destinations with ease, unlocking new experiences and cultural insights along the way.</p>
-              </div>
-              <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="border-radius: 20px;" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-                    <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1615449551620-d4b780ef9387?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVpc2VufGVufDB8fDB8fHww"></image>
-                </svg>
-              </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette py-5">
-              <div class="col-md-7" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">No More <span style="color: #A5C9E1">Lengthy </span>Flight Searches.</h2>
-                <p class="lead">Simplify your flight searches with our efficient platform. Bid farewell to the complexities of traditional search methods, and access relevant flight information promptly, ensuring a smoother travel planning process.</p>
+        <div class="row featurette py-5">
+            <div class="col-md-7" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">Plan Trips Whenever <span style="color: #A5C9E1">You </span>Desire.</h2>
+                <p class="lead">Seamlessly organize your travel itineraries with our intuitive flight database platform. Whether it's a spontaneous getaway or a planned journey, our platform empowers you to plan trips at your convenience.</p>
               </div>
               <div class="col-md-5">
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="border-radius: 20px;" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-                    <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1609948679766-a6d38be3bae4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlaXNlbnxlbnwwfHwwfHx8MA%3D%3D"></image>
+                    <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1567927663055-efed28734f1f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVpc2VufGVufDB8fDB8fHww"></image>
                 </svg>
               </div>
-            </div>
+        </div>
 
-            <!-- /END THE FEATURETTES -->
+        <hr class="featurette-divider">
 
-  </div>
-        <!-- Pricing -->
+        <div class="row featurette py-5">
+          <div class="col-md-7 order-md-2" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">Discover <span style="color: #A5C9E1">Unusual </span>Destinations.</h2>
+            <p class="lead">Broaden your travel horizons effortlessly with our platform. Discover unconventional destinations with ease, unlocking new experiences and cultural insights along the way.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="border-radius: 20px;" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
+                <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1615449551620-d4b780ef9387?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVpc2VufGVufDB8fDB8fHww"></image>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette py-5">
+          <div class="col-md-7" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2 class="featurette-heading fw-normal lh-1" style="margin-bottom: 20px;">No More <span style="color: #A5C9E1">Lengthy </span>Flight Searches.</h2>
+            <p class="lead">Simplify your flight searches with our efficient platform. Bid farewell to the complexities of traditional search methods, and access relevant flight information promptly, ensuring a smoother travel planning process.</p>
+          </div>
+          <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="border-radius: 20px;" width="400" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
+                <image height="100%" width="100%" preserveAspectRatio="xMidYMid slice" href="https://images.unsplash.com/photo-1609948679766-a6d38be3bae4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlaXNlbnxlbnwwfHwwfHx8MA%3D%3D"></image>
+            </svg>
+          </div>
+        </div>
+
+        <!-- /END THE FEATURETTES -->
+
+</div>
+    <!-- Pricing -->
 <!--
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mx-5">
           <div class="col">
@@ -168,7 +164,6 @@
           </div>
     </div>
 -->
-    {% endif %}
 {% endblock %}
 
 

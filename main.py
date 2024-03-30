@@ -90,7 +90,7 @@ def air_nomad_society():
             )
             db.session.add(new_member)
             db.session.commit()
-            return render_template("AirNomad.html", form_submitted=True)
+            flash("Success. You are now an Air Nomad ✈️")
     return render_template("AirNomad.html", form=form)
 
 @app.route("/flashback-playlists", methods=["POST", "GET"])
