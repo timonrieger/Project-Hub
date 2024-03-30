@@ -13,10 +13,12 @@
         </p>
     </div>
     <div class="my-5">
-        {% if form_submitted == True %}
-            <h2>Success.</h2>
-        {% else %}
-            {{ render_form(form, button_map={"submit": "primary"}) }}
-        {% endif %}
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h5 class="flash mb-4" style="color: #d9534f">{{ message }}</h5>
+        {% endfor %}
+    {% else %}
+        {{ render_form(form, button_map={"submit": "primary"}) }}
+    {% endif %}
     </div>
 {% endblock %}

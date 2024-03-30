@@ -48,10 +48,15 @@ with app.app_context():
 def home():
     form = NewsletterForm()
     if form.validate_on_submit():
-        newsletter_subscriber = NewsletterSubscribers(email=form.email.data)
-        db.session.add(newsletter_subscriber)
-        db.session.commit()
-        return render_template("index.html", form=form, form_submitted=True)
+        already_subscriber = db.get_or_404(NewsletterSubscribers, form.email.data)
+        if already_subscriber:
+            flash("You have subscribed already.")
+        if not already_subscriber:
+            newsletter_subscriber = NewsletterSubscribers(email=form.email.data)
+            db.session.add(newsletter_subscriber)
+            db.session.commit()
+            flash("Successfully subscribed.")
+        return render_template("index.html", form=form)
     return render_template("index.html", form=form)
 
 @app.route("/projects")
