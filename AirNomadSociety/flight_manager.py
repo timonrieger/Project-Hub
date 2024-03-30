@@ -31,6 +31,7 @@ for user in data_manager.user_data:
     selected_gems = random.sample(data_manager.destination_data, 5)
     message = f"Hey {user["firstName"]}!\n\n"
     dream_places = "🌟 Your Dream Destinations 🌟\n\n"
+    dream_cities = []
     gem_places = "💎 Discover Hidden Gems 💎\n\n"
 
     for destination in data_manager.destination_data:
@@ -60,6 +61,7 @@ for user in data_manager.user_data:
                 if flight.stop_overs[0] > 0:
                     dream_places += f"Flight has {flight.stop_overs[0]} stop over in {flight.via_city}."
                 dream_places += "\n"
+                dream_cities.append(flight.arrival_city[0])
 
     for destination in selected_gems:
         flight = flight_search.check_flight(
@@ -74,7 +76,7 @@ for user in data_manager.user_data:
         if flight is None:
             continue
 
-        if flight.departure_city[0] != flight.arrival_city[0]:
+        if flight.departure_city[0] != flight.arrival_city[0] and flight.arrival_city[0] not in dream_cities:
             gem_places += (
                 f"✈️ Only {flight.price[0]}{flight.currency} to fly from "
                 f"{flight.departure_city[0]} ({flight.departure_iata_code[0]}) to "
