@@ -2,8 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email, Length, NumberRange
 from wtforms import StringField, SelectField, IntegerField, SelectMultipleField, SubmitField, TextAreaField, DateField
 
-STRING_FIELD_STYLE = "width: 50%; height: 30px; margin: auto; display: block"
-TEXT_AREA_STYLE = "width: 50%; height: 80px; margin: auto; display: block"
+STRING_FIELD_STYLE = "width: 40%; height: 30px; margin: auto; display: block"
+TEXT_AREA_STYLE = "width: 40%; height: 80px; margin: auto; display: block"
 SUBMIT_STYLE = "margin-bottom: 10px"
 
 class AirNomadSocietySubscribe(FlaskForm):
