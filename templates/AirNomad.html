@@ -73,6 +73,11 @@
             </div>
           </div>
         </div>
+        {% if get_flashed_messages() %}
+                {% for message in get_flashed_messages() %}
+                    <h5 class="flash mb-4" style="color: #0275d8">{{ message }}</h5>
+                {% endfor %}
+        {% endif %}
         {{ render_form(form) }}
         <br><br>
         <!-- caroussel -->
