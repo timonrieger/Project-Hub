@@ -76,21 +76,36 @@ def air_nomad_society():
     form = AirNomadSocietySubscribe()
     if form.validate_on_submit():
         already_member = db.session.execute(db.Select(AirNomads).where(AirNomads.email == form.email.data)).scalar()
+
         if already_member:
-            flash("You are already a member. Your preferences were changed successfully.")
+            if form.update.data:
+                already_member.username = form.username.data
+                already_member.departure_city = form.departure_city.data
+                already_member.currency = form.currency.data
+                already_member.min_nights = form.min_nights.data
+                already_member.max_nights = form.max_nights.data
+                already_member.travel_countries = form.travel_countries.data
+                db.session.commit()
+                flash("Your preferences were changed successfully.")
+            elif form.join.data:
+                flash("You are already a member. Update instead.")
         if not already_member:
-            new_member = AirNomads(
-                username=form.username.data,
-                email=form.email.data,
-                departure_city=form.departure_city.data,
-                currency=form.currency.data,
-                min_nights=form.min_nights.data,
-                max_nights=form.max_nights.data,
-                travel_countries=form.travel_countries.data
-            )
-            db.session.add(new_member)
-            db.session.commit()
-            flash("Success. You are now an Air Nomad ✈️")
+            if form.update.data:
+                flash("You aren't a member yet. Join first.")
+            elif form.join.data:
+                new_member = AirNomads(
+                    username=form.username.data,
+                    email=form.email.data,
+                    departure_city=form.departure_city.data,
+                    currency=form.currency.data,
+                    min_nights=form.min_nights.data,
+                    max_nights=form.max_nights.data,
+                    travel_countries=form.travel_countries.data
+                )
+                db.session.add(new_member)
+                db.session.commit()
+                flash("Success. You are now an Air Nomad ✈️")
+
     return render_template("AirNomad.html", form=form)
 
 @app.route("/flashback-playlists", methods=["POST", "GET"])
