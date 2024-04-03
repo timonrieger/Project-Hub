@@ -52,20 +52,9 @@
               </div>
             </div>
             {% if form_submitted == True %}
-                <button type="button" class="btn btn-danger mb-5" data-bs-toggle="modal" data-bs-target="#show_playlist_link">
-                  Listen Now!
+                <button type="button" class="btn btn-danger mb-5">
+                  <a href="{{ link }}" target="_blank" style="text-decoration:none; color: white">Listen Now!</a>
                 </button>
-                <div class="modal fade" id="show_playlist_link" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <div>
-                        <h2>Enjoy Listening! <a href="{{ link }}" target="_blank">{{ title }}</a></h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
             {% endif %}
             {% if get_flashed_messages() %}
                 {% for message in get_flashed_messages() %}
