@@ -22,7 +22,6 @@ notification_manager = NotificationManager()
 # reloading_requests = 0
 start_time = time.time()
 
-#data_manager.delete_duplicate_users()
 data_manager.get_user_data()
 weekday = 1  # datetime.now().strftime("%w")
 data_manager.get_destination_data(sheet_nr=weekday)
@@ -42,7 +41,7 @@ for user in data_manager.user_data:
         if destination["country"] in user.values():
             flight = flight_search.check_flight(
                 departure_iata_code=user["departureIata"],
-                arrival_iata_code=destination["iataCode"],
+                arrival_iata_code=destination["code"],
                 from_time=datetime.now() + timedelta(days=1),
                 to_time=datetime.now() + timedelta(days=180),
                 min_nights=user["nightsFrom"],
@@ -65,8 +64,8 @@ for user in data_manager.user_data:
 
     for destination in selected_gems:
         flight = flight_search.check_flight(
-            departure_iata_code="AUH", #user["departureIata"],
-            arrival_iata_code=destination["iataCode"],
+            departure_iata_code=user["departureIata"],
+            arrival_iata_code=destination["code"],
             from_time=datetime.now() + timedelta(days=1),
             to_time=datetime.now() + timedelta(days=180),
             min_nights=user["nightsFrom"],
