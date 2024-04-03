@@ -1,5 +1,6 @@
 import requests, os
 from secret_keys import SHEETY_BEARER
+from main import app, db, AirNomads
 
 SHEETY_ALL_ENDPOINT = "https://api.sheety.co/e2e4da57cedbf59fa0d734324f84fc00/flightDeals"
 
@@ -16,10 +17,17 @@ class DataManager:
 
 
     def get_user_data(self):
-        self.user_data = requests.get(url=f"{SHEETY_ALL_ENDPOINT}/users", headers=HEADER).json()["users"]
-        #self.user_data = [{"firstName": "Timon", "lastName": "Rieger", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "30", "sent": ""}]#,
-                      #{"firstName": "Nic", "lastName": "Schwarz", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "365", "sent": ""}]
-        return self.user_data
+        with app.app_context():
+            user_list = []
+            user_data = db.session.query(AirNomads).all()
+        #self.user_data = requests.get(url=f"{SHEETY_ALL_ENDPOINT}/users", headers=HEADER).json()["users"]
+        #self.user_data = [{"username": "Timon", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "30", "sent": ""}]#,
+                      #{"username": "Nic", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "365", "sent": ""}]
+            for user in user_data:
+                user_info = {"username": user.username, "email": user.email, "departureCity": user.departure_city, "departureIata": "MUC", "currency": user.currency}
+                user_list.append(user_info)
+            self.user_data = user_list
+            print(self.user_data)
 
     def get_destination_data(self, sheet_nr):
         ### Use the Sheety API to GET all the data in that sheet and print it out.
