@@ -22,14 +22,14 @@ notification_manager = NotificationManager()
 # reloading_requests = 0
 start_time = time.time()
 
-data_manager.delete_duplicate_users()
+#data_manager.delete_duplicate_users()
 data_manager.get_user_data()
 weekday = 1  # datetime.now().strftime("%w")
 data_manager.get_destination_data(sheet_nr=weekday)
 
 for user in data_manager.user_data:
     selected_gems = random.sample(data_manager.destination_data, 5)
-    message = f"Hey {user["firstName"]}!\n\n"
+    message = f"Hey {user["username"]}!\n\n"
     dream_places = "🌟 Your Dream Destinations 🌟\n\n"
     dream_cities = []
     gem_places = "💎 Discover Hidden Gems 💎\n\n"
@@ -41,7 +41,7 @@ for user in data_manager.user_data:
 
         if destination["country"] in user.values():
             flight = flight_search.check_flight(
-                departure_iata_code="AUH",  #user["departureIata"],
+                departure_iata_code=user["departureIata"],
                 arrival_iata_code=destination["iataCode"],
                 from_time=datetime.now() + timedelta(days=1),
                 to_time=datetime.now() + timedelta(days=180),
