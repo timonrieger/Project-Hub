@@ -62,7 +62,7 @@ for user in data_manager.user_data:
                     f"from {flight.from_date[0]} to {flight.to_date[0]}.")
                 if flight.stop_overs[0] > 0:
                     dream_places += f" Flight has {flight.stop_overs[0]} stop over in {flight.via_city}."
-                dream_places += "\n"
+                dream_places += "\n\n"
 
     for destination in selected_gems:
         flight = flight_search.check_flight(
@@ -85,14 +85,14 @@ for user in data_manager.user_data:
                 f"from {flight.from_date[0]} to {flight.to_date[0]}.")
             if flight.stop_overs[0] > 0:
                 gem_places += f" Flight has {flight.stop_overs[0]} stop over in {flight.via_city}."
-            gem_places += "\n"
+            gem_places += "\n\n"
 
             # shorten link ###is working 12 links per month on bitly
             # link = notification_manager.create_tinyurl(flight.link)
             # print(flight.link)
             # places += f"\nBook now: {flight.link}\n\n"
 
-    message += f"{dream_places}\n\n{gem_places}\n\nHappy Travels!\n\n"
+    message += f"{dream_places}\n\n\n{gem_places}\n\n\nHappy Travels!"
     notification_manager.send_emails(to_adress=user["email"], message=message)
     # notification_manager.send_alertzy(message=message, destination=flight.arrival_city[0], link=flight.link)
 
