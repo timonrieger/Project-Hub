@@ -23,8 +23,8 @@ notification_manager = NotificationManager()
 start_time = time.time()
 
 data_manager.get_user_data()
-weekday = 1  # datetime.now().strftime("%w")
-data_manager.get_destination_data(sheet_nr=weekday)
+
+data_manager.get_destination_data()
 
 for user in data_manager.user_data:
     selected_gems = random.sample(data_manager.destination_data, 5)
