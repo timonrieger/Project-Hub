@@ -72,9 +72,7 @@ def air_nomad_society():
     form = AirNomadSocietySubscribe()
     if form.validate_on_submit():
         already_member = db.session.execute(db.Select(AirNomads).where(AirNomads.email == form.email.data)).scalar()
-        favorite_countries = ""
-        for country in form.favorite_countries.data:
-            favorite_countries += f"{country},"
+        favorite_countries = ",".join([country for country in form.favorite_countries.data])
         if already_member:
             if form.update.data:
                 already_member.username = form.username.data
@@ -109,7 +107,6 @@ def air_nomad_society():
     return render_template("AirNomad.html", form=form)
 
 @app.route("/flashback-playlists", methods=["POST", "GET"])
-#### Lade kreis einbauen, DateField nachlesen (richtiges Format)
 def flashback_playlists():
     form = FlashbackPlaylists()
     if form.validate_on_submit():
