@@ -76,7 +76,10 @@ def air_nomad_society():
     form = AirNomadSocietySubscribe()
     if form.validate_on_submit():
         already_member = db.session.execute(db.Select(AirNomads).where(AirNomads.email == form.email.data)).scalar()
-
+        favorite_countries = ""
+        for country in form.favorite_countries.data:
+            favorite_countries += f"{country},"
+        print(favorite_countries)
         if already_member:
             if form.update.data:
                 already_member.username = form.username.data
@@ -84,7 +87,7 @@ def air_nomad_society():
                 already_member.currency = form.currency.data
                 already_member.min_nights = form.min_nights.data
                 already_member.max_nights = form.max_nights.data
-                already_member.travel_countries = form.travel_countries.data
+                already_member.travel_countries = favorite_countries
                 db.session.commit()
                 flash("Your preferences were changed successfully.")
             elif form.join.data:
@@ -100,7 +103,7 @@ def air_nomad_society():
                     currency=form.currency.data,
                     min_nights=form.min_nights.data,
                     max_nights=form.max_nights.data,
-                    travel_countries=form.travel_countries.data
+                    travel_countries=favorite_countries
                 )
                 db.session.add(new_member)
                 db.session.commit()
