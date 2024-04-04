@@ -1,15 +1,17 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email, Length, NumberRange
 from wtforms import StringField, SelectField, IntegerField, SelectMultipleField, SubmitField, TextAreaField, DateField
+from secret_keys import TRAVEL_DATA
+import requests
 
 STRING_FIELD_STYLE = "width: 40%; height: 30px; margin: auto; display: block"
 TEXT_AREA_STYLE = "width: 40%; height: 100px; margin: auto; display: block"
 SUBMIT_STYLE = "margin-bottom: 10px"
 
 class AirNomadSocietySubscribe(FlaskForm):
-    departure_choices = ["Munich", "Frankfurt", "Berlin", "Hamburg", "Köln"]
-    currency_choices = ["EUR", "USD", "CAD", "BTC"]
-    country_choices = ["France", "Spain", "Germany", "USA", "Brasilien"]
+    departure_choices = [city["city"] for city in requests.get(url=TRAVEL_DATA).json()["cities"]]
+    currency_choices = requests.get(url=TRAVEL_DATA).json()["currencies"]
+    country_choices = [country["country"] for country in requests.get(url=TRAVEL_DATA).json()["countries"]]
 
     username = StringField(label="Username", validators=[DataRequired(), Length(min=3, max=10, message="Set a username within 3 - 8 characters.")], render_kw={"style": f"{STRING_FIELD_STYLE}"})
     email = StringField(label="Email", validators=[DataRequired(), Email()], render_kw={"style": f"{STRING_FIELD_STYLE}"})
