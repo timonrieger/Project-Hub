@@ -28,6 +28,10 @@ data_manager.get_destination_data()
 
 for user in data_manager.user_data:
     selected_gems = random.sample(data_manager.destination_data, 5)
+    for index, item in enumerate(selected_gems):
+        while item in user["dreamPlaces"]:
+            selected_gems[index] = random.choice(data_manager.destination_data)
+            item = selected_gems[index]
     message = f"Hey {user["username"]}!\n\n"
     dream_places = "🌟 Your Dream Destinations 🌟\n\n"
     gem_places = "💎 Discover Hidden Gems 💎\n\n"
@@ -73,7 +77,7 @@ for user in data_manager.user_data:
         if flight is None:
             continue
 
-        elif flight.departure_city[0] != flight.arrival_city[0] and flight.arrival_city[0] not in user["dreamPlaces"]:
+        elif flight.departure_city[0] != flight.arrival_city[0]:
             gem_places += (
                 f"✈️ Only {flight.price[0]}{flight.currency} to fly from "
                 f"{flight.departure_city[0]} ({flight.departure_iata_code[0]}) to "
