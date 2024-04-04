@@ -20,7 +20,10 @@ class DataManager:
     def get_user_data(self):
         with app.app_context():
             user_data = db.session.query(AirNomads).all()
-        self.user_data = [{"username": user.username, "email": user.email, "departureCity": user.departure_city, "departureIata": "MUC", "currency": user.currency} for user in user_data]
+        self.user_data = [{"username": user.username, "email": user.email, "departureCity": user.departure_city.split(" | ")[0],
+                           "departureIata": user.departure_city.split(" | ")[1], "currency": user.currency,
+                           "nightsFrom": user.min_nights, "nightsTo": user.max_nights,
+                           "dreamPlaces": [country.split(",") for country in user.travel_countries]} for user in user_data]
         return self.user_data
 
     def get_destination_data(self):
