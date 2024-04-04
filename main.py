@@ -1,5 +1,3 @@
-import time, threading
-from datetime import datetime as dt
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -9,8 +7,6 @@ import requests
 from flask_bootstrap import Bootstrap5
 from FlashbackPlaylists.spotify import PlaylistGenerator
 from secret_keys import FLASK_SECRET_KEY
-
-# import sheety airports database (large and mid airports)
 
 # website content storage using npoint
 data = requests.get(url="https://api.npoint.io/498c13e5c27e87434a9f").json()
@@ -60,7 +56,6 @@ def home():
 
 @app.route("/projects")
 def browse_projects():
-    #print(data["projects"])
     return render_template("projects.html", all_projects=data["projects"])
 
 @app.route("/contact", methods=["POST", "GET"])
@@ -79,7 +74,6 @@ def air_nomad_society():
         favorite_countries = ""
         for country in form.favorite_countries.data:
             favorite_countries += f"{country},"
-        print(favorite_countries)
         if already_member:
             if form.update.data:
                 already_member.username = form.username.data
