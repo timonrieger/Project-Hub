@@ -27,6 +27,7 @@ class AirNomads(db.Model):
     username: Mapped[str] = mapped_column(String)
     email: Mapped[str] = mapped_column(String, unique=True)
     departure_city: Mapped[str] = mapped_column(String)
+    departure_iata: Mapped[str] = mapped_column(String)
     currency: Mapped[str] = mapped_column(String)
     min_nights: Mapped[int] = mapped_column(Integer)
     max_nights: Mapped[int] = mapped_column(Integer)
@@ -77,7 +78,8 @@ def air_nomad_society():
         if already_member:
             if form.update.data:
                 already_member.username = form.username.data
-                already_member.departure_city = form.departure_city.data
+                already_member.departure_city = form.departure_city.data.split(" | ")[0]
+                already_member.departure_iata = form.departure_city.data.split(" | ")[1]
                 already_member.currency = form.currency.data
                 already_member.min_nights = form.min_nights.data
                 already_member.max_nights = form.max_nights.data
@@ -93,7 +95,8 @@ def air_nomad_society():
                 new_member = AirNomads(
                     username=form.username.data,
                     email=form.email.data,
-                    departure_city=form.departure_city.data,
+                    departure_city=form.departure_city.data.split(" | ")[0],
+                    departure_iata=form.departure_city.data.split(" | ")[1],
                     currency=form.currency.data,
                     min_nights=form.min_nights.data,
                     max_nights=form.max_nights.data,
