@@ -23,7 +23,7 @@ class DataManager:
         self.user_data = [{"username": user.username, "email": user.email, "departureCity": user.departure_city,
                            "departureIata": user.departure_iata, "currency": user.currency,
                            "nightsFrom": user.min_nights, "nightsTo": user.max_nights,
-                           "dreamPlaces": [country.split(",") for country in user.travel_countries]} for user in user_data]
+                           "dreamPlaces": user.travel_countries.split(",")[:-1]} for user in user_data] # Exclude the last empty string
         return self.user_data
 
     def get_destination_data(self):
