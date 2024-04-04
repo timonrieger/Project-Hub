@@ -38,7 +38,7 @@ for user in data_manager.user_data:
         if destination["country"] == "" or destination["code"] == "":
             pass  # in case there is an empty line, skip this destination
 
-        if destination["country"] in user.values():
+        if destination["country"] in user["dreamPlaces"]:
             flight = flight_search.check_flight(
                 departure_iata_code=user["departureIata"],
                 arrival_iata_code=destination["code"],
