@@ -1,6 +1,7 @@
 import requests, os
 from secret_keys import SHEETY_BEARER
 from main import app, db, AirNomads
+from secret_keys import TRAVEL_DATA
 
 SHEETY_ALL_ENDPOINT = "https://api.sheety.co/e2e4da57cedbf59fa0d734324f84fc00/flightDeals"
 
@@ -18,23 +19,15 @@ class DataManager:
 
     def get_user_data(self):
         with app.app_context():
-            user_list = []
             user_data = db.session.query(AirNomads).all()
-        #self.user_data = requests.get(url=f"{SHEETY_ALL_ENDPOINT}/users", headers=HEADER).json()["users"]
-        #self.user_data = [{"username": "Timon", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "30", "sent": ""}]#,
-                      #{"username": "Nic", "email": "timon@riegerx.de", "departureCity": "Munich", "departureIata": "MUC", "currency": "EUR", "startSearch": "1", "endSearch": "365", "sent": ""}]
-            for user in user_data:
-                user_info = {"username": user.username, "email": user.email, "departureCity": user.departure_city, "departureIata": "MUC", "currency": user.currency}
-                user_list.append(user_info)
-            self.user_data = user_list
-            print(self.user_data)
+        self.user_data = [{"username": user.username, "email": user.email, "departureCity": user.departure_city, "departureIata": "MUC", "currency": user.currency} for user in user_data]
+        return self.user_data
 
-    def get_destination_data(self, sheet_nr):
-        ### Use the Sheety API to GET all the data in that sheet and print it out.
-        response = requests.get(url=f"{SHEETY_ALL_ENDPOINT}/destinations{sheet_nr}", headers=HEADER)
-        self.destination_data = response.json()[f"destinations{sheet_nr}"]
-        #self.destination_data = []
+    def get_destination_data(self):
+        self.destination_data = requests.get(url=TRAVEL_DATA).json()["countries"]
         return self.destination_data
+
+    ################# these methods are not used right now, but might be relevant in future updates ################
 
     def delete_duplicate_users(self):
         emails = []
@@ -43,13 +36,6 @@ class DataManager:
                 row = emails.index(user["email"]) + 3
                 requests.delete(url=f"{SHEETY_ALL_ENDPOINT}/users/{row}", headers=HEADER)
             emails.append(user["email"])
-
-
-
-
-
-    ################# these methods are not used right now, but might be relevant in future updates ################
-
 
     def update_iata_code(self, iata_code, row, sheet_nr):
         new_data = {
