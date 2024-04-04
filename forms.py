@@ -14,7 +14,7 @@ class AirNomadSocietySubscribe(FlaskForm):
     currency_choices = requests.get(url=TRAVEL_DATA).json()["currencies"]
     country_choices = [country["country"] for country in requests.get(url=TRAVEL_DATA).json()["countries"]]
 
-    username = StringField(label="Username", validators=[DataRequired(), Length(min=3, max=10, message="Set a username within 3 - 8 characters.")], render_kw={"style": f"{STRING_FIELD_STYLE}"})
+    username = StringField(label="Username", validators=[DataRequired(), Length(min=3, max=20, message="Set a username within 3 - 8 characters.")], render_kw={"style": f"{STRING_FIELD_STYLE}"})
     email = StringField(label="Email", validators=[DataRequired(), Email()], render_kw={"style": f"{STRING_FIELD_STYLE}"})
     departure_city = SelectField(label="Departure City", choices=departure_choices, validators=[DataRequired()], render_kw={"style": f"{STRING_FIELD_STYLE}"})
     currency = SelectField(label="Currency", choices=currency_choices, validators=[DataRequired()], render_kw={"style": f"{STRING_FIELD_STYLE}"})
