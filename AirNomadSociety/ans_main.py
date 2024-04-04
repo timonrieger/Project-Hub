@@ -35,7 +35,7 @@ for user in data_manager.user_data:
 
     for destination in data_manager.destination_data:
         # reloading_requests += 1
-        if destination["country"] == "" and destination["iataCode"] == "":
+        if destination["country"] == "" or destination["code"] == "":
             pass  # in case there is an empty line, skip this destination
 
         if destination["country"] in user.values():
