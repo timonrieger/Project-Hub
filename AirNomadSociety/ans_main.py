@@ -1,13 +1,3 @@
-##### Ideen als Add On
-# Email Adresse beim Eingang mit "Air Nomad Society" erkennbar ❌
-# Code in Python Anywhere einspeisen
-# ich will ja nicht bei jedem flug für jeden nutzer einen eigenen link über bitly erstellen: entweder abo kaufen oder andere lösung finden (kein short link; anderer link shortener (tiny url geht ned), html code oder alle user mit dem gleichen flug durchgehen und so links sparen. https://t.ly/docs, wsl doch bitly oder einach gar nicht verkürzen (dann nur email möglich)
-# Unsubscribe funktion (Name, vName, email, try delete, html)
-# bei fav countries preisdifferenz zur vorwoche angeben ( macht das sinn bei sich ändernden städten ? )
-# email übersetzen
-# sheety template zur aquisition
-# iata code verknüpfung (entweder in input formular ergänzen und dann per split aufteilen, oder in anderem sheet nach stadt suchen und iata code finden)
-
 from datetime import datetime, timedelta
 import random, time
 
