@@ -10,7 +10,7 @@ SELECT_MULTIPLE_STYLE = "width: 40%; height: 150px; margin: auto; display: block
 SUBMIT_STYLE = "margin-bottom: 10px"
 
 class AirNomadSocietySubscribe(FlaskForm):
-    departure_choices = [city["city"] for city in requests.get(url=TRAVEL_DATA).json()["cities"]]
+    departure_choices = [f"{city["city"]} | {city["code"]}" for city in requests.get(url=TRAVEL_DATA).json()["cities"]]
     currency_choices = requests.get(url=TRAVEL_DATA).json()["currencies"]
     country_choices = [country["country"] for country in requests.get(url=TRAVEL_DATA).json()["countries"]]
 
