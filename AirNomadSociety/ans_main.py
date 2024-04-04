@@ -94,7 +94,7 @@ for user in data_manager.user_data:
     notification_manager.send_emails(to_adress=user["email"], message=message)
     # notification_manager.send_alertzy(message=message, destination=flight.arrival_city[0], link=flight.link)
 
-    print(f"Code Runt Time was: {time.time() - start_time} seconds.")
+    print(f"Code Run Time was: {time.time() - start_time} seconds.")
 
 
     # if reloading_requests % 10 == 0:
