@@ -338,9 +338,9 @@ def webhook():
         return render_template("404.html"), 404
     if request.is_json:
         data = request.get_json()
-        existing_signal = Fib_Trades.query.filter_by(entry=data["price"], coin=data["ticker"], direction=data["direction"]).first()
+        existing_signal = AutomatedFibbonacciSignals.query.filter_by(entry=data["price"], coin=data["ticker"], direction=data["direction"]).first()
         if not existing_signal:
-            new_signal = Fib_Trades(
+            new_signal = AutomatedFibbonacciSignals(
                 coin=data["ticker"],
                 direction=data["direction"],
                 entry=float(data["price"])
