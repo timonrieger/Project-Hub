@@ -338,14 +338,17 @@ def webhook():
         return render_template("404.html"), 404
     if request.is_json:
         data = request.get_json()
-        new_signal = Trade(
-            coin=data["ticker"],
-            direction=data["direction"],
-            entry=data["price"]
-        )
-        db.session.add(new_signal)
-        db.session.commit()
-        return jsonify({"message": "JSON received!", "data": data}), 200
+        existing_signal = Trade.query.filter_by(entry=data["price"], coin=data["ticker"], direction=data["direction"]).first()
+        if not existing_signal:
+            new_signal = Trade(
+                coin=data["ticker"],
+                direction=data["direction"],
+                entry=data["price"]
+            )
+            db.session.add(new_signal)
+            db.session.commit()
+            return jsonify({"message": "JSON received!", "data": data}), 200
+        return jsonify({"message": "Duplicate signal"}), 200
     else:
         return jsonify({"message": "Request body must be JSON"}), 400
 
