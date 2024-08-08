@@ -2,8 +2,8 @@ from flask import Flask, render_template, url_for, flash, redirect, request, sen
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, func, DateTime
-from forms import AirNomadSocietyForm, NewsletterForm, ContactForm, FlashbackPlaylistsForm
+from sqlalchemy import Integer, String, func, DateTime, Float
+from forms import AirNomadSocietyForm, NewsletterForm
 import requests, os, datetime
 from flask_bootstrap import Bootstrap5
 from mail_manager import MailManager
@@ -36,10 +36,7 @@ bootstrap = Bootstrap5(app)
 mail_manager = MailManager()
 
 class Base(DeclarativeBase):
-    __abstract__ = True
-
-    confirmed: Mapped[int] = mapped_column(Integer, default=0)
-    token: Mapped[str] = mapped_column(String, unique=True)
+    pass
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///personal-website.db")
 db = SQLAlchemy(app, model_class=Base)
@@ -54,16 +51,21 @@ class AirNomads(db.Model):
     min_nights: Mapped[int] = mapped_column(Integer)
     max_nights: Mapped[int] = mapped_column(Integer)
     travel_countries: Mapped[str] = mapped_column(String)
+    confirmed: Mapped[int] = mapped_column(Integer, default=0)
+    token: Mapped[str] = mapped_column(String, unique=True)
 
 class NewsletterSubs(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String, unique=True)
+    confirmed: Mapped[int] = mapped_column(Integer, default=0)
+    token: Mapped[str] = mapped_column(String, unique=True)
 
 class Trade(db.Model):
-    trade_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     coin: Mapped[str] = mapped_column(String)
     signal_time: Mapped[datetime.datetime] = mapped_column(DateTime, default=func.current_timestamp())
     direction: Mapped[str] = mapped_column(String)
+    entry: Mapped[float] = mapped_column(Float)
 
 with app.app_context():
     db.create_all()
@@ -328,13 +330,18 @@ def books():
     return render_template("books.html", latest=latest_reads, best=best_reads)
 
 @app.route('/webhook', methods=['POST'])
+@csrf.exempt
 def webhook():
+    client_ip = request.remote_addr
+    allowed_ips = os.environ.get("ALLOWED_IPS")
+    if client_ip not in allowed_ips:
+        return render_template("404.html"), 404
     if request.is_json:
         data = request.get_json()
         new_signal = Trade(
             coin=data["ticker"],
             direction=data["direction"],
-            token="ignore me"
+            entry=data["price"]
         )
         db.session.add(new_signal)
         db.session.commit()
