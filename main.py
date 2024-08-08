@@ -1,10 +1,10 @@
-from flask import Flask, render_template, url_for, flash, redirect, request, send_from_directory
+from flask import Flask, render_template, url_for, flash, redirect, request, send_from_directory, jsonify
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String
+from sqlalchemy import Integer, String, func, DateTime
 from forms import AirNomadSocietyForm, NewsletterForm, ContactForm, FlashbackPlaylistsForm
-import requests, os
+import requests, os, datetime
 from flask_bootstrap import Bootstrap5
 from FlashbackPlaylists.spotify import PlaylistGenerator
 from mail_manager import MailManager
@@ -59,6 +59,12 @@ class AirNomads(db.Model):
 class NewsletterSubs(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String, unique=True)
+
+class Trade(db.Model):
+    trade_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    coin: Mapped[str] = mapped_column(String)
+    signal_time: Mapped[datetime.datetime] = mapped_column(DateTime, default=func.current_timestamp())
+    direction: Mapped[str] = mapped_column(String)
 
 with app.app_context():
     db.create_all()
@@ -361,6 +367,21 @@ def contact():
 
     #return render_template("contact.html", form=form)
     return redirect(f'mailto:{PRV_EMAIL}')
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    if request.is_json:
+        data = request.get_json()
+        new_signal = Trade(
+            coin=data["ticker"],
+            direction=data["direction"],
+            token="ignore me"
+        )
+        db.session.add(new_signal)
+        db.session.commit()
+        return jsonify({"message": "JSON received!", "data": data}), 200
+    else:
+        return jsonify({"message": "Request body must be JSON"}), 400
 
 @app.route('/robots.txt')
 def static_from_root():
