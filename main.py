@@ -343,7 +343,7 @@ def webhook():
             new_signal = Trade(
                 coin=data["ticker"],
                 direction=data["direction"],
-                entry=data["price"]
+                entry=float(data["price"])
             )
             db.session.add(new_signal)
             db.session.commit()
