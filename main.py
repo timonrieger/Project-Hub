@@ -6,7 +6,6 @@ from sqlalchemy import Integer, String, func, DateTime
 from forms import AirNomadSocietyForm, NewsletterForm, ContactForm, FlashbackPlaylistsForm
 import requests, os, datetime
 from flask_bootstrap import Bootstrap5
-from FlashbackPlaylists.spotify import PlaylistGenerator
 from mail_manager import MailManager
 from flask_wtf.csrf import CSRFProtect
 from PIL import Image, ExifTags
@@ -249,29 +248,6 @@ def ans_subscribe():
 def ans_example_email():
     return render_template("ans_example_email.html")
 
-@app.route("/projects/flashback-playlists", methods=["POST", "GET"])
-def flashback_playlists():
-    form = FlashbackPlaylistsForm()
-    if form.validate_on_submit():
-        date_input = str(form.date_input.data)
-        year = int(date_input.split("-")[0])
-        month = date_input.split("-")[1]
-        day = date_input.split("-")[2]
-        if year >= 1900:
-            playlist_date = f"{year}-{month}-{day}"
-            description = f"{form.description.data} | Created with https://timonrieger.de/projects/flashback-playlists"
-            pg = PlaylistGenerator()
-            playlist_link = pg.generate_playlist(date=playlist_date, title=form.title.data, description=description)
-            return render_template("FlashbackPlaylists.html", form_submitted=True, link=playlist_link, title=form.title.data, form=form)
-        else:
-            flash("Please enter a date that is later than 1900.", category="error")
-            form = FlashbackPlaylistsForm(
-                title=form.title.data,
-                description=form.description.data
-            )
-            return render_template("FlashbackPlaylists.html", form=form)
-    return render_template("FlashbackPlaylists.html", form=form)
-
 
 @app.route("/projects")
 def browse_projects():
@@ -350,23 +326,6 @@ def books():
     best_reads = sorted(book_list, key=lambda x: x['highlights'], reverse=True)[:5]
 
     return render_template("books.html", latest=latest_reads, best=best_reads)
-
-@app.route("/contact", methods=["POST", "GET"])
-def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
-        message = (f"Subject: Message by {form.name.data} from your Website\n\n"
-                   f"Hello Timon,\n\n"
-                   f"My name is {form.name.data}. You can contact me at {form.email.data}\n\n"
-                   f"{form.message.data}\n\n")
-        sent = mail_manager.send_basic_emails(GMAIL_EMAIL, GMAIL_PASSWORD, GMAIL_EMAIL, message)
-        if sent:
-            flash("Message successfully sent.", "success")
-        elif not sent:
-            flash("Message could not be sent. Try again later or send me an ", "not_sent")
-
-    #return render_template("contact.html", form=form)
-    return redirect(f'mailto:{PRV_EMAIL}')
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
