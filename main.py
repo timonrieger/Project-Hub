@@ -60,7 +60,7 @@ class NewsletterSubs(db.Model):
     confirmed: Mapped[int] = mapped_column(Integer, default=0)
     token: Mapped[str] = mapped_column(String, unique=True)
 
-class Trade(db.Model):
+class Fib_Trades(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     coin: Mapped[str] = mapped_column(String)
     signal_time: Mapped[datetime.datetime] = mapped_column(DateTime, default=func.current_timestamp())
@@ -338,9 +338,9 @@ def webhook():
         return render_template("404.html"), 404
     if request.is_json:
         data = request.get_json()
-        existing_signal = Trade.query.filter_by(entry=data["price"], coin=data["ticker"], direction=data["direction"]).first()
+        existing_signal = Fib_Trades.query.filter_by(entry=data["price"], coin=data["ticker"], direction=data["direction"]).first()
         if not existing_signal:
-            new_signal = Trade(
+            new_signal = Fib_Trades(
                 coin=data["ticker"],
                 direction=data["direction"],
                 entry=float(data["price"])
