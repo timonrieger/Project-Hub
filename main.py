@@ -60,7 +60,7 @@ class NewsletterSubs(db.Model):
     confirmed: Mapped[int] = mapped_column(Integer, default=0)
     token: Mapped[str] = mapped_column(String, unique=True)
 
-class Fib_Trades(db.Model):
+class AutomatedFibbonacciSignals(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     coin: Mapped[str] = mapped_column(String)
     signal_time: Mapped[datetime.datetime] = mapped_column(DateTime, default=func.current_timestamp())
